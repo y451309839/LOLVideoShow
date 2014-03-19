@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7C12F86D-3999-41CD-ACF9-190FED787607}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LOLVideoShow</RootNamespace>
+    <AssemblyName>LOLVideoShow</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>LOLVideoShow.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>LOLVideoShow.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CN.SmartMad.Ads.WindowsPhone7">
+      <HintPath>..\..\..\Work\SmartMad-SDK-WindowsPhone-3.0.1\SmartMad\CN.SmartMad.Ads.WindowsPhone7.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Expression.Interactions" />
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Work\SmartMad-SDK-WindowsPhone-3.0.1\SmartMad\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpZipLib.WindowsPhone7">
+      <HintPath>..\..\..\Work\SmartMad-SDK-WindowsPhone-3.0.1\SmartMad\SharpZipLib.WindowsPhone7.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Servicemodel.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Class\DataCache.cs" />
+    <Compile Include="Class\Toast.cs" />
+    <Compile Include="Class\WebEvent.cs" />
+    <Compile Include="Data\Chennel.cs" />
+    <Compile Include="Class\CommonTools.cs" />
+    <Compile Include="Class\DragListBox.cs" />
+    <Compile Include="Data\ChennelInfo.cs" />
+    <Compile Include="Data\ChennelType.cs" />
+    <Compile Include="Data\HeroInfo.cs" />
+    <Compile Include="Data\JieshuoInfo.cs" />
+    <Compile Include="Data\MatchInfo.cs" />
+    <Compile Include="Data\VideoInfo.cs" />
+    <Compile Include="Class\WebData.cs" />
+    <Compile Include="ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Class\IsolatedStorageHelper.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\hero.xaml.cs">
+      <DependentUpon>hero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\jieshuo.xaml.cs">
+      <DependentUpon>jieshuo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\match.xaml.cs">
+      <DependentUpon>match.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VideoList.xaml.cs">
+      <DependentUpon>VideoList.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\hero.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\jieshuo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\match.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VideoList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="images\ui\put_down.png" />
+    <Content Include="SplashScreenImage.jpg" />
+    <Resource Include="images\panorama_background\0.jpg" />
+    <Resource Include="images\panorama_background\1.jpg" />
+    <Resource Include="images\panorama_background\10.jpg" />
+    <Resource Include="images\panorama_background\11.jpg" />
+    <Resource Include="images\panorama_background\12.jpg" />
+    <Resource Include="images\panorama_background\13.jpg" />
+    <Resource Include="images\panorama_background\14.jpg" />
+    <Resource Include="images\panorama_background\15.jpg" />
+    <Resource Include="images\panorama_background\16.jpg" />
+    <Resource Include="images\panorama_background\17.jpg" />
+    <Resource Include="images\panorama_background\18.jpg" />
+    <Resource Include="images\panorama_background\19.jpg" />
+    <Resource Include="images\panorama_background\2.jpg" />
+    <Resource Include="images\panorama_background\20.jpg" />
+    <Resource Include="images\panorama_background\21.jpg" />
+    <Resource Include="images\panorama_background\22.jpg" />
+    <Resource Include="images\panorama_background\23.jpg" />
+    <Resource Include="images\panorama_background\24.jpg" />
+    <Resource Include="images\panorama_background\25.jpg" />
+    <Resource Include="images\panorama_background\26.jpg" />
+    <Resource Include="images\panorama_background\27.jpg" />
+    <Resource Include="images\panorama_background\28.jpg" />
+    <Resource Include="images\panorama_background\29.jpg" />
+    <Resource Include="images\panorama_background\3.jpg" />
+    <Resource Include="images\panorama_background\30.jpg" />
+    <Resource Include="images\panorama_background\31.jpg" />
+    <Resource Include="images\panorama_background\32.jpg" />
+    <Resource Include="images\panorama_background\33.jpg" />
+    <Resource Include="images\panorama_background\34.jpg" />
+    <Resource Include="images\panorama_background\4.jpg" />
+    <Resource Include="images\panorama_background\5.jpg" />
+    <Resource Include="images\panorama_background\6.jpg" />
+    <Resource Include="images\panorama_background\7.jpg" />
+    <Resource Include="images\panorama_background\8.jpg" />
+    <Resource Include="images\panorama_background\9.jpg" />
+    <Resource Include="images\hero_pic\aatrox.png" />
+    <Resource Include="images\hero_pic\ahri.png" />
+    <Resource Include="images\hero_pic\akali.png" />
+    <Resource Include="images\hero_pic\alistar.png" />
+    <Resource Include="images\hero_pic\amumu.png" />
+    <Resource Include="images\hero_pic\anivia.png" />
+    <Resource Include="images\hero_pic\annie.png" />
+    <Resource Include="images\hero_pic\ashe.png" />
+    <Resource Include="images\hero_pic\blitzcrank.png" />
+    <Resource Include="images\hero_pic\brand.png" />
+    <Resource Include="images\hero_pic\caitlyn.png" />
+    <Resource Include="images\hero_pic\cassiopeia.png" />
+    <Resource Include="images\hero_pic\chogath.png" />
+    <Resource Include="images\hero_pic\corki.png" />
+    <Resource Include="images\hero_pic\darius.png" />
+    <Resource Include="images\hero_pic\diana.png" />
+    <Resource Include="images\hero_pic\draven.png" />
+    <Resource Include="images\hero_pic\drmundo.png" />
+    <Resource Include="images\hero_pic\elise.png" />
+    <Resource Include="images\hero_pic\evelynn.png" />
+    <Resource Include="images\hero_pic\ezreal.png" />
+    <Resource Include="images\hero_pic\fiddlesticks.png" />
+    <Resource Include="images\hero_pic\fiora.png" />
+    <Resource Include="images\hero_pic\fizz.png" />
+    <Resource Include="images\hero_pic\galio.png" />
+    <Resource Include="images\hero_pic\gangplank.png" />
+    <Resource Include="images\hero_pic\garen.png" />
+    <Resource Include="images\hero_pic\gragas.png" />
+    <Resource Include="images\hero_pic\graves.png" />
+    <Resource Include="images\hero_pic\hecarim.png" />
+    <Resource Include="images\hero_pic\heimerdinger.png" />
+    <Resource Include="images\hero_pic\irelia.png" />
+    <Resource Include="images\hero_pic\janna.png" />
+    <Resource Include="images\hero_pic\jarvaniv.png" />
+    <Resource Include="images\hero_pic\jax.png" />
+    <Resource Include="images\hero_pic\jayce.png" />
+    <Resource Include="images\hero_pic\jinx.png" />
+    <Resource Include="images\hero_pic\karma.png" />
+    <Resource Include="images\hero_pic\karthus.png" />
+    <Resource Include="images\hero_pic\kassadin.png" />
+    <Resource Include="images\hero_pic\katarina.png" />
+    <Resource Include="images\hero_pic\kayle.png" />
+    <Resource Include="images\hero_pic\kennen.png" />
+    <Resource Include="images\hero_pic\khazix.png" />
+    <Resource Include="images\hero_pic\kogmaw.png" />
+    <Resource Include="images\hero_pic\leblanc.png" />
+    <Resource Include="images\hero_pic\leesin.png" />
+    <Resource Include="images\hero_pic\leona.png" />
+    <Resource Include="images\hero_pic\lissandra.png" />
+    <Resource Include="images\hero_pic\lucian.png" />
+    <Resource Include="images\hero_pic\lulu.png" />
+    <Resource Include="images\hero_pic\lux.png" />
+    <Resource Include="images\hero_pic\malphite.png" />
+    <Resource Include="images\hero_pic\malzahar.png" />
+    <Resource Include="images\hero_pic\maokai.png" />
+    <Resource Include="images\hero_pic\masteryi.png" />
+    <Resource Include="images\hero_pic\missfortune.png" />
+    <Resource Include="images\hero_pic\monkeyking.png" />
+    <Resource Include="images\hero_pic\mordekaiser.png" />
+    <Resource Include="images\hero_pic\morgana.png" />
+    <Resource Include="images\hero_pic\nami.png" />
+    <Resource Include="images\hero_pic\nasus.png" />
+    <Resource Include="images\hero_pic\nautilus.png" />
+    <Resource Include="images\hero_pic\nidalee.png" />
+    <Resource Include="images\hero_pic\nocturne.png" />
+    <Resource Include="images\hero_pic\nunu.png" />
+    <Resource Include="images\hero_pic\olaf.png" />
+    <Resource Include="images\hero_pic\orianna.png" />
+    <Resource Include="images\hero_pic\pantheon.png" />
+    <Resource Include="images\hero_pic\poppy.png" />
+    <Resource Include="images\hero_pic\quinn.png" />
+    <Resource Include="images\hero_pic\rammus.png" />
+    <Resource Include="images\hero_pic\random.jpg" />
+    <Resource Include="images\hero_pic\renekton.png" />
+    <Resource Include="images\hero_pic\rengar.png" />
+    <Resource Include="images\hero_pic\riven.png" />
+    <Resource Include="images\hero_pic\rumble.png" />
+    <Resource Include="images\hero_pic\ryze.png" />
+    <Resource Include="images\hero_pic\sejuani.png" />
+    <Resource Include="images\hero_pic\shaco.png" />
+    <Resource Include="images\hero_pic\shen.png" />
+    <Resource Include="images\hero_pic\shyvana.png" />
+    <Resource Include="images\hero_pic\singed.png" />
+    <Resource Include="images\hero_pic\sion.png" />
+    <Resource Include="images\hero_pic\sivir.png" />
+    <Resource Include="images\hero_pic\skarner.png" />
+    <Resource Include="images\hero_pic\sona.png" />
+    <Resource Include="images\hero_pic\soraka.png" />
+    <Resource Include="images\hero_pic\swain.png" />
+    <Resource Include="images\hero_pic\syndra.png" />
+    <Resource Include="images\hero_pic\talon.png" />
+    <Resource Include="images\hero_pic\taric.png" />
+    <Resource Include="images\hero_pic\teemo.png" />
+    <Resource Include="images\hero_pic\thresh.png" />
+    <Resource Include="images\hero_pic\tristana.png" />
+    <Resource Include="images\hero_pic\trundle.png" />
+    <Resource Include="images\hero_pic\tryndamere.png" />
+    <Resource Include="images\hero_pic\twistedfate.png" />
+    <Resource Include="images\hero_pic\twitch.png" />
+    <Resource Include="images\hero_pic\udyr.png" />
+    <Resource Include="images\hero_pic\urgot.png" />
+    <Resource Include="images\hero_pic\varus.png" />
+    <Resource Include="images\hero_pic\vayne.png" />
+    <Resource Include="images\hero_pic\veigar.png" />
+    <Resource Include="images\hero_pic\vi.png" />
+    <Resource Include="images\hero_pic\viktor.png" />
+    <Resource Include="images\hero_pic\vladimir.png" />
+    <Resource Include="images\hero_pic\volibear.png" />
+    <Resource Include="images\hero_pic\warwick.png" />
+    <Resource Include="images\hero_pic\xerath.png" />
+    <Resource Include="images\hero_pic\xinzhao.png" />
+    <Resource Include="images\hero_pic\yasuo.png" />
+    <Resource Include="images\hero_pic\yorick.png" />
+    <Resource Include="images\hero_pic\zac.png" />
+    <Resource Include="images\hero_pic\zed.png" />
+    <Resource Include="images\hero_pic\ziggs.png" />
+    <Resource Include="images\hero_pic\zilean.png" />
+    <Resource Include="images\hero_pic\zyra.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

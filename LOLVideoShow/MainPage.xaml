@@ -1,0 +1,81 @@
+﻿<phone:PhoneApplicationPage xmlns:my1="clr-namespace:CN.SmartMad.Ads.WindowsPhone.WPF;assembly=CN.SmartMad.Ads.WindowsPhone7"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="LOLVideoShow.MainPage"
+    d:DesignWidth="480" d:DesignHeight="800"
+    mc:Ignorable="d"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    xmlns:loc="clr-namespace:LOLVideoShow.Class"
+    Style="{StaticResource TransitionPageStyle}"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI">
+    
+    <!--演示 ApplicationBar 用法的示例代码-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="按钮 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="按钮 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="菜单项 1"/>
+                <shell:ApplicationBarMenuItem Text="菜单项 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot" Background="Transparent" >
+        <ProgressBar Height="4" HorizontalAlignment="Left" Name="progressMain" VerticalAlignment="Top" Width="460" IsIndeterminate="True" Opacity="0" />
+        <controls:Panorama x:Name="MainPanorama">
+        	<controls:Panorama.RenderTransform>
+        		<CompositeTransform/>
+        	</controls:Panorama.RenderTransform>
+            <controls:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10,80,0,0" Orientation="Horizontal">
+                    	<TextBlock Text="{Binding Source={StaticResource AppName}}" Style="{StaticResource PhoneTextTitle1Style}" />
+                    </StackPanel>
+                </DataTemplate>
+            </controls:Panorama.TitleTemplate>
+            <controls:PanoramaItem Orientation="Horizontal">
+                <loc:DragListBox x:Name="listMatch">
+                    <StackPanel Margin="10,0,10,10">
+                        <TextBlock Text="类别" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"  Margin="0,0,0,8" />
+                        <HyperlinkButton Content="赛事" Template="{StaticResource TextlinkBtnTemplate}" FontSize="32" Margin="0,0,0,8"
+                                                 NavigateUri="/Pages/match.xaml" />
+                        <HyperlinkButton Content="解说" Template="{StaticResource TextlinkBtnTemplate}" FontSize="32" Margin="0,0,0,8"
+                                                 NavigateUri="/Pages/jieshuo.xaml" />
+                        <HyperlinkButton Content="英雄" Template="{StaticResource TextlinkBtnTemplate}" FontSize="32" Margin="0,0,0,8"
+                                                 NavigateUri="/Pages/hero.xaml" />
+                    </StackPanel>
+                </loc:DragListBox>
+            </controls:PanoramaItem>
+            <controls:PanoramaItem Orientation="Horizontal">
+                <loc:DragListBox x:Name="listNewTui" OnScrollDown="listNewTui_OnScrollDown">
+                    <StackPanel Margin="10,0,10,10">
+                        <TextBlock Text="最新上传" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" Margin="0,0,0,8" />
+                        <Grid Width="400" Name="gridTui">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </StackPanel>
+                </loc:DragListBox>
+            </controls:PanoramaItem>
+            <controls:PanoramaItem Orientation="Horizontal">
+                <loc:DragListBox x:Name="ListHistory" RefreshText="清空记录" DoRefreshText="释放清空" OnScrollDown="ListHistory_OnScrollDown">
+                    <StackPanel Width="400" Margin="10,0,10,10">
+                        <TextBlock Text="播放记录" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" Margin="10,0,10,10" />
+                        <StackPanel Name="ListHistoryItems">
+                        </StackPanel>
+                    </StackPanel>
+                </loc:DragListBox>
+            </controls:PanoramaItem>
+            <controls:PanoramaItem>
+                <StackPanel Margin="10,0,10,10">
+                    <TextBlock Text="关于" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" Margin="0,0,0,8" />
+                    <StackPanel Name="ADSpace"><my1:SMAdBannerView AdSpaceId="90044175" /></StackPanel>
+                </StackPanel>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+</phone:PhoneApplicationPage>
