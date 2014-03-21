@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Microsoft.Phone.Net.NetworkInformation;
 using System.Diagnostics;
+using Microsoft.Phone.Tasks;
 
 namespace LOLVideoShow
 {
@@ -105,23 +106,13 @@ namespace LOLVideoShow
                 Boolean _Big = item.title.Length > 18;
 
                 ///控件创建
-                TextBlock mTextBlock = new TextBlock();
-                mTextBlock.Text = item.title;
-                mTextBlock.FontSize = 18;
-                mTextBlock.Foreground = (Brush)Application.Current.Resources["PhoneForegroundBrush"];
-                mTextBlock.Margin = new Thickness(5);
-                mTextBlock.TextWrapping = TextWrapping.Wrap;
-                mTextBlock.TextAlignment = TextAlignment.Center;
-                mTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
-                mTextBlock.VerticalAlignment = VerticalAlignment.Center;
-
-                Border mBorder = new Border();
-                mBorder.Tag = item;
-                mBorder.Margin = new Thickness(5);
-                mBorder.Background = (Brush)Application.Current.Resources["PhoneAccentBrush"];
-                mBorder.Tap += new EventHandler<System.Windows.Input.GestureEventArgs>(mBorder_Tap);
-
-                mBorder.Child = mTextBlock;
+                Button mButton = new Button();
+                mButton.Template = (ControlTemplate)Application.Current.Resources["TileBtnTemlate"];
+                mButton.Content = item.title;
+                mButton.FontSize = 18;
+                mButton.Tag = item;
+                mButton.Click += new RoutedEventHandler(mButton_Click);
+                TiltEffect.SetIsTiltEnabled(mButton, true);
 
                 if (_Left && _Right)
                 {
@@ -150,11 +141,11 @@ namespace LOLVideoShow
                 {
                     addNewRow(gridTui);
                 }
-                Grid.SetColumn(mBorder, x);
-                Grid.SetRow(mBorder, row_index);
+                Grid.SetColumn(mButton, x);
+                Grid.SetRow(mButton, row_index);
                 if (_Big)
                 {
-                    Grid.SetRowSpan(mBorder, 2);
+                    Grid.SetRowSpan(mButton, 2);
                     if (x == 0)
                         _Left = true;
                     else
@@ -163,9 +154,9 @@ namespace LOLVideoShow
 
                 num++;
                 if (x == 1) row_index++;
-                gridTui.Children.Add(mBorder);
+                gridTui.Children.Add(mButton);
             }
-            addNewRow(gridTui);
+            //addNewRow(gridTui);
         }
 
 
@@ -183,39 +174,29 @@ namespace LOLVideoShow
             {
                 VideoInfo item = history[id];
                 ///控件创建
-                TextBlock mTextBlock = new TextBlock();
-                mTextBlock.Text = item.title;
-                mTextBlock.FontSize = 18;
-                mTextBlock.Foreground = (Brush)Application.Current.Resources["PhoneForegroundBrush"];
-                mTextBlock.Margin = new Thickness(5);
-                mTextBlock.TextWrapping = TextWrapping.Wrap;
-                mTextBlock.TextAlignment = TextAlignment.Center;
-                mTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
-                mTextBlock.VerticalAlignment = VerticalAlignment.Center;
+                Button mButton = new Button();
+                mButton.Template = (ControlTemplate)Application.Current.Resources["TileBtnTemlate"];
+                mButton.Content = item.title;
+                mButton.FontSize = 18;
+                mButton.MinHeight = 80;
+                mButton.Tag = item;
+                mButton.Click += new RoutedEventHandler(mButton_Click);
+                TiltEffect.SetIsTiltEnabled(mButton, true);
 
-                Border mBorder = new Border();
-                mBorder.Tag = item;
-                mBorder.Margin = new Thickness(5);
-                mBorder.Height = 80;
-                mBorder.Background = (Brush)Application.Current.Resources["PhoneAccentBrush"];
-                mBorder.Tap += new EventHandler<System.Windows.Input.GestureEventArgs>(mBorder_Tap);
-
-                mBorder.Child = mTextBlock;
-                ListHistoryItems.Children.Add(mBorder);
+                ListHistoryItems.Children.Add(mButton);
             }
         }
 
-        private void mBorder_Tap(object sender, EventArgs e)
+        private void mButton_Click(object sender, RoutedEventArgs e)
         {
-            Border m = sender as Border;
+            Button m = sender as Button;
             VideoInfo v = m.Tag as VideoInfo;
             MessageBoxResult msgRst = MessageBox.Show(v.title, "立即播放", MessageBoxButton.OKCancel);
             if (msgRst == MessageBoxResult.OK)
             {
-                string url = App.HOST + "/api/go_youku/" + v.id;
-                _web.Load(url, getYoukuMoblieMp4Callback);
-                history = CommonTools.SevePlayerHistory(v);
+                history = CommonTools.SavePlayerHistory(v);
                 PanelHistory();
+                NavigationService.Navigate(new Uri("/Player/" + v.id, UriKind.Relative));
             }
         }
 
@@ -240,6 +221,29 @@ namespace LOLVideoShow
             {
                 toast.show("再按一次离开");
                 e.Cancel = true;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+                marketplaceReviewTask.Show();
+            }
+            catch
+            {
+                toast.show("抱歉，您暂时无法参与评分");
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult msgRst = MessageBox.Show("您确定要清理掉所有缓存数据？", "清理缓存", MessageBoxButton.OKCancel);
+            if (msgRst == MessageBoxResult.OK)
+            {
+                IsolatedStorageHelper.ClearObjects();
+                toast.show("缓存清理完成");
             }
         }
     }

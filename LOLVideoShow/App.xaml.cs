@@ -15,14 +15,13 @@ using Microsoft.Phone.Shell;
 using LOLVideoShow.Data;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Net.NetworkInformation;
-using CN.SmartMad.Ads.WindowsPhone.WPF;
 
 namespace LOLVideoShow
 {
     public partial class App : Application
     {
-        public static string HOST = "http://localhost/ci/index.php";
-        public static string VERSION = "v0.8";
+        public static string HOST = "http://y451309839.hk17.zridc.net/index.php";
+        public static string VERSION = "v1.0.0";
         private static ImageBrush _background = null;
         public static ImageBrush Getbackground
         {
@@ -89,12 +88,6 @@ namespace LOLVideoShow
         // 此代码在重新激活应用程序时不执行
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            // 设置亿动智道平台中获取的应用程序/网站ID
-            SMAdManager.SetApplicationId("e2e7de59baf44199");
-            // 设置广告请求(广告刷新)的间隔时间
-            SMAdManager.SetAdRefreshInterval(0);
-            // 设置开发(Debug)模式，默认false
-            //SMAdManager.SetDebugMode(true);
         }
 
         // 激活应用程序(置于前台)时执行的代码

@@ -67,23 +67,13 @@ namespace LOLVideoShow.Pages
                 Boolean _Big = item.name.Length > 6;
 
                 ///控件创建
-                TextBlock mTextBlock = new TextBlock();
-                mTextBlock.Text = item.name;
-                mTextBlock.FontSize = 24;
-                mTextBlock.Foreground = (Brush)Application.Current.Resources["PhoneForegroundBrush"];
-                mTextBlock.Margin = new Thickness(10, 0, 10, 0);
-                mTextBlock.TextWrapping = TextWrapping.Wrap;
-                mTextBlock.TextAlignment = TextAlignment.Center;
-                mTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
-                mTextBlock.VerticalAlignment = VerticalAlignment.Center;
-
-                Border mBorder = new Border();
-                mBorder.Tag = item;
-                mBorder.Margin = new Thickness(5);
-                mBorder.Background = (Brush)Application.Current.Resources["PhoneAccentBrush"];
-                mBorder.Tap += new EventHandler<System.Windows.Input.GestureEventArgs>(mBorder_Tap);
-
-                mBorder.Child = mTextBlock;
+                Button mButton = new Button();
+                mButton.Template = (ControlTemplate)Application.Current.Resources["TileBtnTemlate"];
+                mButton.Content = item.name;
+                mButton.FontSize = 24;
+                mButton.Tag = item;
+                mButton.Click += new RoutedEventHandler(mButton_Click);
+                TiltEffect.SetIsTiltEnabled(mButton, true);
 
                 if (_Left && _Right)
                 {
@@ -112,11 +102,11 @@ namespace LOLVideoShow.Pages
                 {
                     addNewRow(Gridbox);
                 }
-                Grid.SetColumn(mBorder, x);
-                Grid.SetRow(mBorder, row_index);
+                Grid.SetColumn(mButton, x);
+                Grid.SetRow(mButton, row_index);
                 if (_Big)
                 {
-                    Grid.SetRowSpan(mBorder, 2);
+                    Grid.SetRowSpan(mButton, 2);
                     if (x == 0)
                         _Left = true;
                     else
@@ -125,9 +115,9 @@ namespace LOLVideoShow.Pages
 
                 num++;
                 if (x == 1) row_index++;
-                Gridbox.Children.Add(mBorder);
+                Gridbox.Children.Add(mButton);
             }
-            addNewRow(Gridbox);
+            //addNewRow(Gridbox);
         }
 
         private void addNewRow(Grid grid)
@@ -137,11 +127,11 @@ namespace LOLVideoShow.Pages
             grid.RowDefinitions.Add(row);
         }
 
-        private void mBorder_Tap(object sender, EventArgs e)
+        private void mButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Border b = sender as Border;
+                Button b = sender as Button;
                 JieshuoInfo jieshuo = b.Tag as JieshuoInfo;
                 NavigationService.Navigate(new Uri("/VideoList/jieshuo/" + jieshuo.id, UriKind.Relative));
             }

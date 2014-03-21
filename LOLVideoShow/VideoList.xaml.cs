@@ -34,7 +34,6 @@ namespace LOLVideoShow
             InitializeComponent();
             _web = new WebData();
             _web.SetBusyEvent(onWebBusy, unWebBusy);
-            //this.Loaded += new RoutedEventHandler(VideoList_Loaded);
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -154,8 +153,8 @@ namespace LOLVideoShow
                 else if (NewVideoList_pageIndex == 1)
                 {
                     NewVideoList = temp;
+                    DataCache.SaveCache("NewVideoList_" + this.mod + "_" + this.id, NewVideoList);
                 }
-                DataCache.SaveCache("NewVideoList_" + this.mod + "_" + this.id, NewVideoList);
                 News.DataContext = NewVideoList;
             }
         }
@@ -195,8 +194,8 @@ namespace LOLVideoShow
                 else if (HotVideoList_pageIndex == 1)
                 {
                     HotVideoList = temp;
+                    DataCache.SaveCache("HotVideoList_" + this.mod + "_" + this.id, HotVideoList);
                 }
-                DataCache.SaveCache("HotVideoList_" + this.mod + "_" + this.id, HotVideoList);
                 Hots.DataContext = HotVideoList;
             }
         }
@@ -218,24 +217,7 @@ namespace LOLVideoShow
             MessageBoxResult msgRst = MessageBox.Show(v.title, "立即播放", MessageBoxButton.OKCancel);
             if (msgRst == MessageBoxResult.OK)
             {
-                string url = App.HOST + "/api/go_youku/" + v.id;
-                _web.Load(url, getYoukuMoblieMp4Callback);
-                CommonTools.SevePlayerHistory(v);
-            }
-        }
-
-        private void getYoukuMoblieMp4Callback(object sender, OpenReadCompletedEventArgs e)
-        {
-            try
-            {
-                StreamReader sr = new StreamReader(e.Result);
-                string url = sr.ReadToEnd();
-                CommonTools.playVideo(url);
-            }
-            catch
-            {
-                Toast toast = new Toast();
-                toast.show("网络错误，暂时无法播放！");
+                NavigationService.Navigate(new Uri("/Player/" + v.id, UriKind.Relative));
             }
         }
 

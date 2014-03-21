@@ -25,9 +25,9 @@
                 <loc:DragListBox x:Name="News" ItemsSource="{Binding}" OnScrollUp="News_OnScrollUp" OnScrollDown="News_OnScrollDown">
                     <loc:DragListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="5">
+                            <StackPanel Margin="5" Background="{StaticResource PhoneChromeBrush}">
                                 <HyperlinkButton Content="{Binding title}" Tag="{Binding}" Template="{StaticResource TextlinkBtnTemplate}" FontSize="24" Margin="5,0,5,3" Click="VideoBtn_Click" />
-                                <TextBlock Text="{Binding time, StringFormat='发布时间: {0}'}" Style="{StaticResource PhoneTextSmallStyle}" Margin="5,0,5,10" />
+                                <TextBlock Text="{Binding time, StringFormat='发布时间: {0}'}" Style="{StaticResource PhoneTextSmallStyle}" Margin="5,0" />
                             </StackPanel>
                         </DataTemplate>
                     </loc:DragListBox.ItemTemplate>
@@ -37,9 +37,9 @@
                 <loc:DragListBox x:Name="Hots" ItemsSource="{Binding}" OnScrollDown="Hots_OnScrollDown" OnScrollUp="Hots_OnScrollUp">
                     <loc:DragListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="5">
+                            <StackPanel Margin="5" Background="{StaticResource PhoneChromeBrush}">
                                 <HyperlinkButton Content="{Binding title}" Tag="{Binding}" Template="{StaticResource TextlinkBtnTemplate}" FontSize="24" Margin="5,0,5,3" Click="VideoBtn_Click" />
-                                <TextBlock Text="{Binding time, StringFormat='发布时间: {0}'}" Style="{StaticResource PhoneTextSmallStyle}" Margin="5,0,5,10" />
+                                <TextBlock Text="{Binding time, StringFormat='发布时间: {0}'}" Style="{StaticResource PhoneTextSmallStyle}" Margin="5,0" />
                             </StackPanel>
                         </DataTemplate>
                     </loc:DragListBox.ItemTemplate>

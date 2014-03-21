@@ -21,8 +21,9 @@
             <sys:String x:Key="AppName">英雄联盟视频</sys:String>
     		<navcore:UriMapper x:Key="UriMapper">
     			<navcore:UriMapping Uri="/Home" MappedUri="/MainPage.xaml"/>
-    			<navcore:UriMapping Uri="/VideoList/{model}/{number}" MappedUri="/VideoList.xaml?mod={model}&amp;id={number}"/>
-    		</navcore:UriMapper>
+                <navcore:UriMapping Uri="/VideoList/{model}/{number}" MappedUri="/VideoList.xaml?mod={model}&amp;id={number}"/>
+                <navcore:UriMapping Uri="/Player/{id}" MappedUri="/Pages/player.xaml?id={id}"/>
+            </navcore:UriMapper>
     		<ControlTemplate x:Key="TextlinkBtnTemplate" TargetType="HyperlinkButton">
     			<Border x:Name="border" RenderTransformOrigin="0.5,0.5">
     				<Border.RenderTransform>
@@ -71,6 +72,11 @@
     				</Setter.Value>
     			</Setter>
     		</Style>
+            <ControlTemplate x:Key="TileBtnTemlate" TargetType="Button">
+    			<Grid Background="{StaticResource PhoneAccentBrush}" Margin="5" >
+            		<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="{TemplateBinding FontSize}"/>
+            	</Grid>
+    		</ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 

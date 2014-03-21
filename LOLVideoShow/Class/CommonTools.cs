@@ -81,7 +81,7 @@ namespace LOLVideoShow.Class
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
-        public static ObservableCollection<VideoInfo> SevePlayerHistory(VideoInfo v)
+        public static ObservableCollection<VideoInfo> SavePlayerHistory(VideoInfo v)
         {
             ObservableCollection<VideoInfo> history = IsolatedStorageHelper.GetObject<ObservableCollection<VideoInfo>>("PlayerHistory");
             if (history == null) history = new ObservableCollection<VideoInfo>();

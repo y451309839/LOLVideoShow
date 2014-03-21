@@ -39,6 +39,11 @@ namespace LOLVideoShow
             IsolatedStorageSettings.ApplicationSettings.Remove(key);
         }
 
+        public static void ClearObjects()
+        {
+            IsolatedStorageSettings.ApplicationSettings.Clear();
+        }
+
         public static string Serialize(object objectToSerialize)
         {
             using (MemoryStream ms = new MemoryStream())

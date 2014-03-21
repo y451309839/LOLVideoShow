@@ -1,0 +1,14 @@
+﻿<xapCache source="F:\projects\LOLVideoShow\LOLVideoShow\Bin\Release\LOLVideoShow.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2014/3/21 17:37:25">
+  <file source="F:\projects\LOLVideoShow\LOLVideoShow\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2014/3/21 17:04:52" />
+  <file source="F:\projects\LOLVideoShow\LOLVideoShow\Background.png" archivePath="Background.png" lastWriteTime="2014/3/21 17:20:16" />
+  <file source="F:\projects\LOLVideoShow\LOLVideoShow\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="2014/3/21 17:20:34" />
+  <file source="F:\projects\LOLVideoShow\LOLVideoShow\obj\Release\LOLVideoShow.dll" archivePath="LOLVideoShow.dll" lastWriteTime="2014/3/21 17:37:22" />
+  <file source="C:\Program Files\Microsoft SDKs\Advertising for Phone\Libraries\Microsoft.Advertising.Mobile.dll" archivePath="Microsoft.Advertising.Mobile.dll" lastWriteTime="2011/8/19 11:13:14" />
+  <file source="C:\Program Files\Microsoft SDKs\Advertising for Phone\Libraries\Microsoft.Advertising.Mobile.UI.dll" archivePath="Microsoft.Advertising.Mobile.UI.dll" lastWriteTime="2011/8/19 11:13:14" />
+  <file source="C:\Program Files\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Interactions.dll" archivePath="Microsoft.Expression.Interactions.dll" lastWriteTime="2011/8/17 1:48:22" />
+  <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="2011/8/29 22:49:08" />
+  <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Toolkit\Aug11\Bin\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="2011/8/12 18:19:16" />
+  <file source="C:\Program Files\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\System.Windows.Interactivity.dll" archivePath="System.Windows.Interactivity.dll" lastWriteTime="2011/8/17 1:48:22" />
+  <file source="F:\projects\LOLVideoShow\LOLVideoShow\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="2014/3/20 19:07:45" />
+  <file source="F:\projects\LOLVideoShow\LOLVideoShow\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2014/3/21 17:04:52" />
+</xapCache>
