@@ -17,6 +17,7 @@ using LOLVideoShow.Data;
 using System.IO;
 using LOLVideoShow.Class;
 using Microsoft.Phone.Tasks;
+using com.PlayData.SDK;
 
 namespace LOLVideoShow.Pages
 {
@@ -73,6 +74,7 @@ namespace LOLVideoShow.Pages
             {
                 MediaTitle.Text = _video.title;
                 CommonTools.SavePlayerHistory(_video);
+                PlayData.onEvent("Play", _video.title);
             }
         }
 

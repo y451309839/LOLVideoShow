@@ -90,6 +90,7 @@ namespace LOLVideoShow
             if (history != null) history.Clear();
             CommonTools.ClearPlayerHistory();
             ListHistoryItems.Children.Clear();
+            toast.show("历史记录已清空");
         }
 
         private void GridnewTuis()
@@ -121,7 +122,7 @@ namespace LOLVideoShow
                     row_index++;
                     addNewRow(gridTui);
                 }
-                if (_Right && x == 1)
+                else if (_Right && x == 1)
                 {
                     _Right = false;
                     num++;
@@ -129,15 +130,14 @@ namespace LOLVideoShow
                     x = num % 2;
                     addNewRow(gridTui);
                 }
-                if (_Left && x == 0)
+                else if (_Left && x == 0)
                 {
                     _Left = false;
                     num++;
                     x = num % 2;
                     addNewRow(gridTui);
                 }
-
-                if (x == 0)
+                else if (x == 0)
                 {
                     addNewRow(gridTui);
                 }

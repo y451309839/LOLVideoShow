@@ -82,7 +82,7 @@ namespace LOLVideoShow.Pages
                     row_index++;
                     addNewRow(Gridbox);
                 }
-                if (_Right && x == 1)
+                else if (_Right && x == 1)
                 {
                     _Right = false;
                     num++;
@@ -90,15 +90,14 @@ namespace LOLVideoShow.Pages
                     x = num % 2;
                     addNewRow(Gridbox);
                 }
-                if (_Left && x == 0)
+                else if (_Left && x == 0)
                 {
                     _Left = false;
                     num++;
                     x = num % 2;
                     addNewRow(Gridbox);
                 }
-
-                if (x == 0)
+                else if (x == 0)
                 {
                     addNewRow(Gridbox);
                 }

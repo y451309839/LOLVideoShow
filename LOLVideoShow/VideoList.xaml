@@ -22,7 +22,7 @@
         <!--枢轴控件-->
         <controls:Pivot Name="listPivot" Title="{Binding Source={StaticResource AppName}}">
             <controls:PivotItem Name="NewVideos" Header="最新发布">
-                <loc:DragListBox x:Name="News" ItemsSource="{Binding}" OnScrollUp="News_OnScrollUp" OnScrollDown="News_OnScrollDown">
+                <loc:DragListBox x:Name="News" ItemsSource="{Binding}" OnScrollUpHandler="News_OnScrollUp" OnScrollDownHandler="News_OnScrollDown">
                     <loc:DragListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="5" Background="{StaticResource PhoneChromeBrush}">
@@ -34,7 +34,7 @@
                 </loc:DragListBox>
             </controls:PivotItem>
             <controls:PivotItem Name="HotVideos" Header="最受欢迎">
-                <loc:DragListBox x:Name="Hots" ItemsSource="{Binding}" OnScrollDown="Hots_OnScrollDown" OnScrollUp="Hots_OnScrollUp">
+                <loc:DragListBox x:Name="Hots" ItemsSource="{Binding}" OnScrollDownHandler="Hots_OnScrollDown" OnScrollUpHandler="Hots_OnScrollUp">
                     <loc:DragListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="5" Background="{StaticResource PhoneChromeBrush}">

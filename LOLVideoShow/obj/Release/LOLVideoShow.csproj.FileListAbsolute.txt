@@ -68,3 +68,4 @@ F:\projects\LOLVideoShow\LOLVideoShow\obj\Release\LOLVideoShow.g.resources
 F:\projects\LOLVideoShow\LOLVideoShow\obj\Release\LOLVideoShow.dll
 F:\projects\LOLVideoShow\LOLVideoShow\obj\Release\LOLVideoShow.pdb
 F:\projects\LOLVideoShow\LOLVideoShow\obj\Release\XapCacheFile.xml
+F:\projects\LOLVideoShow\LOLVideoShow\Bin\Release\PlayData.dll

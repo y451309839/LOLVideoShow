@@ -28,22 +28,18 @@ namespace LOLVideoShow.Class
 
         private Storyboard OnRefresh;
         private Storyboard OnEndRefresh;
-        private Storyboard OnLoadMore;
-        private Storyboard OnEndLoadMore;
-        private Storyboard OnEventRun;
-        private Storyboard UnEventRun;
-        private ScrollViewer ItemsScrollViewer;
+        private ScrollViewer mItemsScrollViewer;
         private TextBlock mRefreshTextBlock;
-        private TextBlock mLoadMoreTextBlock;
+        private StackPanel mRefreshPannel;
 
         /// <summary>
         /// 下拉事件接口
         /// </summary>
-        public event RoutedEventHandler OnScrollDown;
+        public event RoutedEventHandler OnScrollDownHandler;
         /// <summary>
         /// 上拉事件接口
         /// </summary>
-        public event RoutedEventHandler OnScrollUp;
+        public event RoutedEventHandler OnScrollUpHandler;
 
         public DragListBox()
         {
@@ -56,130 +52,103 @@ namespace LOLVideoShow.Class
 
             OnRefresh = GetTemplateChild("onRefresh") as Storyboard;
             OnEndRefresh = GetTemplateChild("onEndRefresh") as Storyboard;
-            OnLoadMore = GetTemplateChild("onLoadMore") as Storyboard;
-            OnEndLoadMore = GetTemplateChild("onEndLoadMore") as Storyboard;
-            OnEventRun = GetTemplateChild("onEventRun") as Storyboard;
-            UnEventRun = GetTemplateChild("unEventRun") as Storyboard;
-            ItemsScrollViewer = GetTemplateChild("ItemsScrollViewer") as ScrollViewer;
-            mRefreshTextBlock = GetTemplateChild("RefreshTextBlock") as TextBlock;
-            mLoadMoreTextBlock = GetTemplateChild("LoadMoreTextBlock") as TextBlock;
+            mItemsScrollViewer = GetTemplateChild("itemsScrollViewer") as ScrollViewer;
+            mRefreshTextBlock = GetTemplateChild("refreshTextBlock") as TextBlock;
+            mRefreshPannel = GetTemplateChild("refreshPanel") as StackPanel;
+
             base.MinHeight = 300;
         }
 
         Boolean IsShowRefresh = false;
         Boolean IsDoRefresh = false;
-        Boolean IsShowLoadMore = false;
         Boolean IsDoLoadMore = false;
         double startY;
-        int scrolledOffset;
-        int scrolledHeight;
+        double scrolledOffset;
+        Boolean IsCheckEvent = false;//检测是否是用户多次快速下拉
 
-        protected override void OnMouseEnter(MouseEventArgs e)
+        protected override void OnManipulationStarted(ManipulationStartedEventArgs e)
         {
-            base.OnMouseEnter(e);
-            startY = e.GetPosition(ItemsScrollViewer).Y;
-            scrolledHeight = (int)ItemsScrollViewer.ScrollableHeight;
-            //Debug.WriteLine("OnManipulationStarted startY = " + startY + " scrolledOffset = " + scrolledOffset);
+            base.OnManipulationStarted(e);
+            IsCheckEvent = true;
+            startY = e.ManipulationOrigin.Y;
+            scrolledOffset = (int)mItemsScrollViewer.VerticalOffset;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            double currentY = e.GetPosition(ItemsScrollViewer).Y;
             base.OnMouseMove(e);
+            if (!IsCheckEvent) return;
+            double currentY = e.GetPosition(mItemsScrollViewer).Y;
             double offset = currentY - startY;
-            double indexY = scrolledOffset - offset;
-
-            scrolledOffset = (int)ItemsScrollViewer.VerticalOffset;
-            //Debug.WriteLine("currentY=" + currentY + " offset=" + offset + " scrolledOffset=" + scrolledOffset);
 
             ///启用下拉事件属性触发
-            if (OnScrollDown != null)
+            if (OnScrollDownHandler != null)
             {
-                ///播放下拉刷新动画
-                if (IsShowRefresh == false && scrolledOffset <= 0 && indexY < -100)
+                if (IsShowRefresh == false && scrolledOffset - offset < -30)
                 {
                     setRefreshVisible(true);
                 }
-                else if (IsShowRefresh == true && indexY > -100)
+                else if (IsShowRefresh == true && scrolledOffset - offset >= -30)
                 {
                     setRefreshVisible(false);
                 }
 
-                ///显示释放刷新
-                if (IsDoRefresh == false && indexY < -150)
+                if (IsDoRefresh == false && scrolledOffset - offset < -150)
                 {
                     IsDoRefresh = true;
                     mRefreshTextBlock.Text = this.DoRefreshText;
-                    OnEventRun.Begin();
                 }
-                ///上拉时放弃下拉事件
-                else if (IsDoRefresh == true && indexY > -150)
+                else if (IsDoRefresh == true && scrolledOffset - offset > -150)
                 {
                     IsDoRefresh = false;
                     mRefreshTextBlock.Text = this.RefreshText;
-                    UnEventRun.Begin();
                 }
             }
 
             ///启用上拉事件属性触发
-            if (OnScrollUp != null)
+            if (OnScrollUpHandler != null)
             {
-                if (IsShowLoadMore == false && scrolledOffset >= scrolledHeight && offset < -100)
+                if (scrolledOffset >= mItemsScrollViewer.ScrollableHeight)
                 {
-                    setLoadMoreVisible(true);
                     IsDoLoadMore = true;
                 }
             }
         }
-        
 
-        protected override void OnMouseLeave(MouseEventArgs e)
+
+        protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
         {
-            base.OnMouseLeave(e);
-            if (OnScrollDown != null && IsDoRefresh == true)
+            base.OnManipulationCompleted(e);
+            IsCheckEvent = false;
+            if (OnScrollDownHandler != null && IsDoRefresh == true)
             {
                 IsDoRefresh = false;
-                OnScrollDown(this, e);
+                OnScrollDownHandler(this, e);
             }
             ///隐藏刷新面板
-            setRefreshVisible(false);
+            if (IsShowRefresh == true) setRefreshVisible(false);
 
-            if (OnScrollUp != null && IsDoLoadMore == true)
+            if (OnScrollUpHandler != null && IsDoLoadMore == true)
             {
                 IsDoLoadMore = false;
-                OnScrollUp(this, e);
+                OnScrollUpHandler(this, e);
             }
-            ///隐藏加载面板
-            setLoadMoreVisible(false);
         }
 
         private void setRefreshVisible(Boolean b)
         {
-            if (b == true && IsShowRefresh == false)
+            if (b == true)
             {
                 mRefreshTextBlock.Text = this.RefreshText;
                 IsShowRefresh = true;
+                OnEndRefresh.Stop();
                 OnRefresh.Begin();
             }
-            else if (b == false && IsShowRefresh == true)
+            else if (b == false)
             {
                 IsShowRefresh = false;
+                OnRefresh.Stop();
                 OnEndRefresh.Begin();
-            }
-        }
-
-        private void setLoadMoreVisible(Boolean b)
-        {
-            if (b == true && IsShowLoadMore == false)
-            {
-                mLoadMoreTextBlock.Text = this.LoadMoreText;
-                IsShowLoadMore = true;
-                OnLoadMore.Begin();
-            }
-            else if (b == false && IsShowLoadMore == true)
-            {
-                IsShowLoadMore = false;
-                OnEndLoadMore.Begin();
             }
         }
 

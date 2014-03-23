@@ -57,6 +57,9 @@
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="PlayData">
+      <HintPath>..\..\..\Work\Playdata_SDK_WP_0.1.2\PlayData.dll</HintPath>
+    </Reference>
     <Reference Include="System.Servicemodel.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -160,6 +163,7 @@
     <Resource Include="images\ui\media_pause_click.png" />
     <Resource Include="images\ui\media_play.png" />
     <Resource Include="images\ui\media_play_click.png" />
+    <Resource Include="images\hero_pic\velkoz.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="images\ui\put_down.png" />
     <Resource Include="images\panorama_background\0.jpg" />

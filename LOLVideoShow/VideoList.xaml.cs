@@ -15,6 +15,7 @@ using Microsoft.Phone.Tasks;
 using System.IO;
 using LOLVideoShow.Class;
 using System.Collections.ObjectModel;
+using com.PlayData.SDK;
 
 namespace LOLVideoShow
 {
@@ -53,6 +54,7 @@ namespace LOLVideoShow
                     else
                     {
                         listPivot.Title = mChennel.title;
+                        PlayData.onEvent("OpenChannel", mChennel.title);
                     }
                 }
 
@@ -115,6 +117,7 @@ namespace LOLVideoShow
             {
                 DataCache.SaveCache("Chennel_" + this.mod + "_" + this.id, mChennel);
                 listPivot.Title = mChennel.title;
+                PlayData.onEvent("OpenChannel", mChennel.title);
             }
         }
 

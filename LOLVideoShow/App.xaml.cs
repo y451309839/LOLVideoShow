@@ -15,13 +15,14 @@ using Microsoft.Phone.Shell;
 using LOLVideoShow.Data;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Net.NetworkInformation;
+using com.PlayData.SDK;
 
 namespace LOLVideoShow
 {
     public partial class App : Application
     {
         public static string HOST = "http://y451309839.hk17.zridc.net/index.php";
-        public static string VERSION = "v1.0.0";
+        public static string VERSION = "v1.0.1";
         private static ImageBrush _background = null;
         public static ImageBrush Getbackground
         {
@@ -88,12 +89,14 @@ namespace LOLVideoShow
         // 此代码在重新激活应用程序时不执行
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            PlayData.onLaunching("0a8cdb25757a52ff");
         }
 
         // 激活应用程序(置于前台)时执行的代码
         // 此代码在首次启动应用程序时不执行
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            PlayData.onActivated("0a8cdb25757a52ff");
         }
 
         // 停用应用程序(发送到后台)时执行的代码

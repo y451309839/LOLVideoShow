@@ -48,7 +48,7 @@
                 </loc:DragListBox>
             </controls:PanoramaItem>
             <controls:PanoramaItem Orientation="Horizontal">
-                <loc:DragListBox x:Name="listNewTui" OnScrollDown="listNewTui_OnScrollDown">
+                <loc:DragListBox x:Name="listNewTui" OnScrollDownHandler="listNewTui_OnScrollDown">
                     <StackPanel Margin="10,0,10,10">
                         <TextBlock Text="最新上传" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" Margin="0,0,0,8" />
                         <Grid Width="400" Name="gridTui">
@@ -61,7 +61,7 @@
                 </loc:DragListBox>
             </controls:PanoramaItem>
             <controls:PanoramaItem Orientation="Horizontal">
-                <loc:DragListBox x:Name="ListHistory" RefreshText="清空记录" DoRefreshText="释放清空" OnScrollDown="ListHistory_OnScrollDown">
+                <loc:DragListBox x:Name="ListHistory" RefreshText="清空记录" DoRefreshText="释放清空" OnScrollDownHandler="ListHistory_OnScrollDown">
                     <StackPanel Width="400" Margin="10,0,10,10">
                         <TextBlock Text="播放记录" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" Margin="10,0,10,10" />
                         <StackPanel Name="ListHistoryItems">
