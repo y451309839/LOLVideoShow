@@ -137,7 +137,7 @@ namespace LOLVideoShow
                     x = num % 2;
                     addNewRow(gridTui);
                 }
-                else if (x == 0)
+                if (x == 0)
                 {
                     addNewRow(gridTui);
                 }
@@ -156,7 +156,6 @@ namespace LOLVideoShow
                 if (x == 1) row_index++;
                 gridTui.Children.Add(mButton);
             }
-            //addNewRow(gridTui);
         }
 
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{03f2dbfe-3c85-478b-850b-87ab19b034c6}" Title="英雄联盟视频" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="LOLVideoShow author" Description="Sample description" Publisher="LOLVideoShow">
+  <App xmlns="" ProductID="{03f2dbfe-3c85-478b-850b-87ab19b034c6}" Title="英雄联盟视频" RuntimeType="Silverlight" Version="1.0.1" Genre="apps.normal" Author="LOLVideoShow author" Description="Sample description" Publisher="LOLVideoShow">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />

@@ -97,7 +97,7 @@ namespace LOLVideoShow.Pages
                     x = num % 2;
                     addNewRow(Gridbox);
                 }
-                else if (x == 0)
+                if (x == 0)
                 {
                     addNewRow(Gridbox);
                 }

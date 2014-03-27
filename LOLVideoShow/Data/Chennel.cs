@@ -24,13 +24,13 @@ namespace LOLVideoShow.Class
         public static ChennelInfo From(HeroInfo info)
         {
             if (info == null) return null;
-            return setChennel(info.id, info.name, ChennelType.Match, info.info);
+            return setChennel(info.id, info.name, ChennelType.Hero, info.info);
         }
 
         public static ChennelInfo From(JieshuoInfo info)
         {
             if (info == null) return null;
-            return setChennel(info.id, info.name, ChennelType.Match, info.info);
+            return setChennel(info.id, info.name, ChennelType.Jieshuo, info.info);
         }
 
         public static ChennelInfo setChennel(int id, string title, ChennelType mod, string info = "")

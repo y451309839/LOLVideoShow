@@ -117,6 +117,18 @@ namespace LOLVideoShow
             {
                 DataCache.SaveCache("Chennel_" + this.mod + "_" + this.id, mChennel);
                 listPivot.Title = mChennel.title;
+                if (mChennel.mod == ChennelType.Hero)
+                {
+                    PivotItem PIbg = new PivotItem();
+                    PIbg.Header = "背景故事";
+                    ScrollViewer SVbg = new ScrollViewer();
+                    TextBlock TBbg = new TextBlock();
+                    TBbg.Text = mChennel.info;
+                    TBbg.TextWrapping = TextWrapping.Wrap;
+                    SVbg.Content = TBbg;
+                    PIbg.Content = SVbg;
+                    listPivot.Items.Add(PIbg);
+                }
                 PlayData.onEvent("OpenChannel", mChennel.title);
             }
         }

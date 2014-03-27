@@ -80,25 +80,26 @@ namespace LOLVideoShow.Class
             if (!IsCheckEvent) return;
             double currentY = e.GetPosition(mItemsScrollViewer).Y;
             double offset = currentY - startY;
+            double moveY = scrolledOffset - offset;
 
             ///启用下拉事件属性触发
             if (OnScrollDownHandler != null)
             {
-                if (IsShowRefresh == false && scrolledOffset - offset < -30)
+                if (IsShowRefresh == false && moveY < -30)
                 {
                     setRefreshVisible(true);
                 }
-                else if (IsShowRefresh == true && scrolledOffset - offset >= -30)
+                else if (IsShowRefresh == true && moveY >= -30)
                 {
                     setRefreshVisible(false);
                 }
 
-                if (IsDoRefresh == false && scrolledOffset - offset < -150)
+                if (IsDoRefresh == false && moveY < -150)
                 {
                     IsDoRefresh = true;
                     mRefreshTextBlock.Text = this.DoRefreshText;
                 }
-                else if (IsDoRefresh == true && scrolledOffset - offset > -150)
+                else if (IsDoRefresh == true && moveY > -150)
                 {
                     IsDoRefresh = false;
                     mRefreshTextBlock.Text = this.RefreshText;
@@ -108,9 +109,13 @@ namespace LOLVideoShow.Class
             ///启用上拉事件属性触发
             if (OnScrollUpHandler != null)
             {
-                if (scrolledOffset >= mItemsScrollViewer.ScrollableHeight)
+                if (moveY > 30 && scrolledOffset == mItemsScrollViewer.ScrollableHeight)
                 {
                     IsDoLoadMore = true;
+                }
+                else
+                {
+                    IsDoLoadMore = false;
                 }
             }
         }

@@ -164,6 +164,7 @@
     <Resource Include="images\ui\media_play.png" />
     <Resource Include="images\ui\media_play_click.png" />
     <Resource Include="images\hero_pic\velkoz.png" />
+    <Resource Include="images\ui\loading.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="images\ui\put_down.png" />
     <Resource Include="images\panorama_background\0.jpg" />
@@ -319,6 +320,7 @@
     <Resource Include="images\hero_pic\ziggs.png" />
     <Resource Include="images\hero_pic\zilean.png" />
     <Resource Include="images\hero_pic\zyra.png" />
+    <Resource Include="Pages\loading.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

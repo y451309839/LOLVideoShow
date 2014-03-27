@@ -59,9 +59,15 @@ namespace LOLVideoShow.Pages
                 MessageBoxResult msgRst = MessageBox.Show("暂时还没有这个视频的播放资源！是否尝试打开网页观看？", "视频连接失败", MessageBoxButton.OKCancel);
                 if (msgRst == MessageBoxResult.OK)
                 {
-                    WebBrowserTask webBrowserTask = new WebBrowserTask();
-                    webBrowserTask.Uri = new Uri(_video.url, UriKind.Absolute);
-                    webBrowserTask.Show();
+                    try
+                    {
+                        WebBrowserTask webBrowserTask = new WebBrowserTask();
+                        webBrowserTask.Uri = new Uri(_video.url, UriKind.Absolute);
+                        webBrowserTask.Show();
+                    }
+                    catch
+                    {
+                    }
                     this.NavigationService.GoBack();
                 }
             }
@@ -94,8 +100,15 @@ namespace LOLVideoShow.Pages
                     }
                 }
             }
+            loadingBar.Visibility = System.Windows.Visibility.Collapsed;
             ThreadPlayerProgress = new Thread(new ThreadStart(ThreadPlayerProgressSlider));
             ThreadPlayerProgress.Start();
+        }
+
+        private void mediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            IsolatedStorageHelper.DeleteObject("PlayVideo_Progress_" + this.id);
+            this.NavigationService.GoBack();
         }
 
         private void MediaSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -131,10 +144,10 @@ namespace LOLVideoShow.Pages
                 MediaIndex.Text = mediaPlayer.Position.ToString(@"hh\:mm\:ss");
                 isSetVideoProgress = true;
             }
-            if (mediaPlayer.Position < mediaPlayer.NaturalDuration.TimeSpan)
+            if (mediaPlayer.Position.Ticks > 0 && mediaPlayer.Position < mediaPlayer.NaturalDuration.TimeSpan)
+            {
                 IsolatedStorageHelper.SaveObject("PlayVideo_Progress_" + this.id, mediaPlayer.Position);
-            else
-                IsolatedStorageHelper.DeleteObject("PlayVideo_Progress_" + this.id);
+            }
         }
 
         private void mediaPlayer_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -188,6 +201,31 @@ namespace LOLVideoShow.Pages
                 mediaPlayer.Play();
                 img.Source = new BitmapImage(new Uri("/LOLVideoShow;component/images/ui/media_pause.png", UriKind.Relative));
             }
+        }
+
+        private void loadingBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadingAnim.Begin();
+        }
+
+        private void mediaPlayer_BufferingProgressChanged(object sender, RoutedEventArgs e)
+        {
+            if (mediaPlayer.BufferingProgress == 1)
+            {
+                MediaTitle.Text = _video.title;
+            }
+            else
+            {
+                int progress = (int)(mediaPlayer.BufferingProgress * 100);
+                MediaTitle.Text = "正在缓冲......" + progress + "%";
+            }
+        }
+
+        private void MediaSlider_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            double x = e.GetPosition(MediaSlider).X;
+            double index = x / MediaSlider.ActualWidth * 100;
+            MediaSlider.Value = index;
         }
 
     }
